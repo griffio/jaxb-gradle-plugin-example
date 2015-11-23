@@ -1,0 +1,32 @@
+plugins {
+  id 'java'
+  id "com.ewerk.gradle.plugins.jaxb2" version "1.0.0"
+}
+
+project.ext.sourceCompatibility = "1.8"
+project.ext.targetCompatibility = "1.8"
+
+repositories {
+  jcenter()
+}
+
+jaxb2 {
+  xjc {
+    'request-classes' {
+      basePackage = 'griffio.request'
+      schema = 'src/main/xsd/request.xsd'
+    }
+  }
+}
+
+dependencies {
+
+  testCompile(
+      'com.google.guava:guava-testlib:18.0'
+  )
+
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.5'
+}
